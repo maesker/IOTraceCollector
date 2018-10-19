@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 # -*- coding: iso-8859-15 -*-
 
 import argparse
@@ -169,5 +169,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
+    if not os.path.isdir(args.mountpoint):
+        os.mkdir(args.mountpoint)
     FUSE(TraceGenerator(args.backend, flush=args.flush, clear=args.clear),
          args.mountpoint, nothreads=True, foreground=True)
